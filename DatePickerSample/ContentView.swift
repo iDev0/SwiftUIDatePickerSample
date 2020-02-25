@@ -9,8 +9,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }
+    
+    @State var selectedDate = Date()
+    
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Text("원하는 날짜를 선택해주렴").font(.largeTitle)
+            
+            DatePicker(selection: $selectedDate, displayedComponents: .date) {
+                Text("")
+            }.padding(30)
+            
+            Text("\(selectedDate, formatter: dateFormatter)")
+                .font(.title)
+        }
     }
 }
 
